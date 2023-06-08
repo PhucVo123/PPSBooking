@@ -1,0 +1,73 @@
+﻿@*52000854 - Võ Huy Phúc*@
+@{
+    ViewBag.Title = Model.nameCategory;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<!-- Packages Start -->
+<div class="container-fluid py-5">
+    <div class="container pt-5 pb-3">
+        <div class="text-center mb-3 pb-3">
+            <h6 class="text-primary text-uppercase" style="letter-spacing: 5px;">@Model.nameCategory</h6>
+            <h1>Pefect Our Service</h1>
+        </div>
+        <!-- Booking Start -->
+        <div class="bg-light shadow" style="padding: 30px;margin-bottom: 40px">
+                <div class="row align-items-center" style="min-height: 60px;">
+                    <div class="col-md-12">
+                        @using (Html.BeginForm("Search", "Service", FormMethod.Get, new {@id = "myform"}))
+                        {
+                            @Html.AntiForgeryToken()
+                            @Html.ValidationSummary(true, null, new { @class = "alert alert-danger" })
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="mb-3 mb-md-3">
+                                        @*<input name="position" type="text" list="position" autocomplete="on" autofocus placeholder="Thành phố, khách sạn, điểm đến" class="form-control"/>*@
+                                        <select class="custom-select px-4 form-control" name="position" id="position">
+                                  
+                                            <option value="Đà Nẵng">Đà Nẵng</option>
+                                            <option value="2">Đà Lạt</option>
+                                            <option value="3">Vũng Tàu</option>
+                                            <option value="4">Hà Nội</option>
+                                            <option value="5">Vịnh Hạ Long</option>
+                                            <option value="3">Phú Quốc</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="mb-3 mb-md-0">
+                                        <div class="date" id="date1" data-target-input="nearest">
+                                            <input type="text" class="form-control p-4 datetimepicker-input" placeholder="Ngày khởi hành" data-target="#date1" data-toggle="datetimepicker" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="mb-3 mb-md-0">
+                                        <div class="date" id="date2" data-target-input="nearest">
+                                            <input type="text" class="form-control p-4 datetimepicker-input" placeholder="Ngày trả phòng" data-target="#date2" data-toggle="datetimepicker" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="mb-3 mb-md-0">
+                                        <select class="custom-select px-4" style="height: 47px;">
+                                            <option selected>Số lượng người</option>
+                                            <option value="1">2 người</option>
+                                            <option value="2">3 người</option>
+                                            <option value="3">4 người</option>
+                                            <option value="3">Trên 4 người</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <input class="btn btn-primary btn-block" id="submits" type="submit" style="height: 47px; margin-top: -2px;" value="Search"/>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+        </div>
+        <!-- Booking End -->
+        @Html.Action("getProduct", "Home", new { meta = Model.meta})
+    </div>
+</div>
+<!-- Packages End -->
